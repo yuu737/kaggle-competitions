@@ -1,0 +1,57 @@
+{
+  "task": 209,
+  "status": "improved",
+  "old_cost_current_oracle_27956": 27956,
+  "v1_cost_accepted": 17734,
+  "v2_cost": 16233,
+  "v2_memory": 16066,
+  "v2_parameters": 167,
+  "gain_v2_vs_current_27956": 0.5435856382861747,
+  "gain_v1_vs_current_27956": 0.45514814465706727,
+  "v2_cost_reduction_vs_v1": {
+    "absolute": 1501,
+    "relative_pct": 8.463175650615395
+  },
+  "acceptance_threshold_18000_or_v1_17734": "met (16233 < 17734)",
+  "target_12500_gain_0_80": "not met (16233 > 12500)",
+  "gates": {
+    "onnx_checker_full_check": "pass",
+    "official_sanitizer": "pass",
+    "onnxruntime_session_current_1_27_0": "pass",
+    "train_test_arcgen_examples_checked": 266,
+    "skipped_examples": 0,
+    "raw_output_equivalence_vs_current_task209": "pass",
+    "official_thresholded_equivalence_vs_current_task209": "pass",
+    "candidate_correct_vs_expected_output": "pass",
+    "check_overfit": "pass (no memorization-style pattern)",
+    "audit_onnx_bundle": "pass (failures=0 for the 1 task present)",
+    "ort_1_22_1_direct_run": "not_run_this_delegation (permission-denied isolated package dir; risk considered low, see risks)"
+  },
+  "changes_from_v1": [
+    "Removed the 400-byte label_flat 1D plane and the 1,600-byte INT32 src_idx 20x20 plane by replacing the single flat-index Gather for the key-stamp with two separable Gathers: Gather(label, src_r_vec, axis=2) then Gather(row_gathered, src_c_vec, axis=3). Mathematically identical to the v1 flat-index Gather because src_r depends only on row offset/scale and src_c only on column offset/scale, and clip order/points are preserved exactly.",
+    "Applied the same row/col-separable 2-step Gather to the 3x5 scale-detection kernel_label sample (removed sample_idx, kept label_flat-free), preserving the v1 asymmetric clipping (only sc is clipped, sr is not, matching v1 exactly).",
+    "Attempted (then reverted) casting non4_u8 and the four row/col indicator vectors from FLOAT32 to UINT8 to shrink the Einsum operands feeding the row/col template and side summaries; reverted because ORT's Einsum kernel does not implement uint8/int8/int16 (NOT_IMPLEMENTED at session creation). No net effect on v2 vs v1 for that portion (kept FLOAT32, identical to v1)."
+  ],
+  "unremovable_planes_reported": [
+    "label_f (FLOAT32 Conv output, 1600B): Conv only supports float/double/float16 inputs in ONNX, so this plane is structurally unavoidable.",
+    "mask4 (BOOL, 400B) + mask4_u8 (UINT8, 400B): ReduceMax/ReduceMin do not support BOOL tensors in opset 17, so the Equal->Cast pair is unavoidable and already at the 1-byte-per-element floor.",
+    "indicator (BOOL, 400B) + indicator_u8 (UINT8, 400B): QLinearConv requires a UINT8/INT8 input, so the Equal->Cast pair feeding the vote convolution is unavoidable.",
+    "non4_u8 and its 4 row/col FLOAT32 Cast/Einsum-adjacent vectors: could not be shrunk below FLOAT32 (4 bytes/elem) because ORT's Einsum kernel only implements float/double/int32/int64; uint8/int8/int16 fail with NOT_IMPLEMENTED (measured).",
+    "vote (UINT8, 400B) plus fit2d/vote_masked/stamp_valid/corners/out_bbox (BOOL, 400B each) and their paired Where outputs (UINT8, 400B each): each is already at the 1-byte-per-element floor for a 20x20 plane and is consumed by exactly one downstream masking/select op; no further pairwise fusion found without changing task semantics.",
+    "out_label30 (UINT8 padded 30x30, 900B): required as the pre-output crop-to-canvas plane before the final Equal-to-one-hot; already minimal at 1 byte/elem."
+  ],
+  "root_submission_sha256_before_and_after": "1b509ed4c55c1391d63a7166a78129635292ef5c015de835714ee89dbdb4e4ca (unchanged)",
+  "v1_artifact_sha256_before_and_after": {
+    "task209_candidate.onnx": "8530b082006dec63e180de2bc51019425483979e5e38e98aba87889fe900a097 (unchanged)",
+    "build_task209_candidate.py": "9cf4eee15eae4d099a41ec6f5c6cb5ebd35ff57ceffb375356bbd4acf554bb70 (unchanged)"
+  },
+  "v2_artifact_sha256": {
+    "build_task209_v2.py": "86ecc57c1004def1fa36ec98bb30ebb5c0f606fed81423a19fac9f247839cb03",
+    "task209_v2.onnx": "ce9f2ea65ae42635cde878de5168064317c218b95426bf1e476ae7bcc58b6f29"
+  },
+  "risks": [
+    "ORT 1.22.1 was not run directly in this delegation because the pre-existing isolated .ort122-packages directory returned Permission denied to this worker; risk assessed as low since v2 uses the exact same operator/dtype set as v1 (already verified on ORT 1.22.1 with 266/266 examples), but this is an unverified extrapolation, not a measurement.",
+    "The uint8 Einsum optimization attempt is documented as a negative result (ORT NOT_IMPLEMENTED); a future worker should not re-attempt it without first checking ORT kernel support for the target opset/EP.",
+    "12,500 target (gain > 0.80) was not reached; remaining 20x20 planes are, per the analysis above, each already at the 1-byte/1600-byte structural floor for their op semantics (Conv float output, BOOL<->UINT8 cast pairs required by ReduceMax/QLinearConv, Einsum float requirement) — further reduction would likely require changing the underlying algorithm, which is outside this worker's authority."
+  ]
+}

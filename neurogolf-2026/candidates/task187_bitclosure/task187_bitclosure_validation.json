@@ -1,0 +1,51 @@
+{
+  "base": "/mnt/data/ng7190/submission.zip",
+  "candidates": [
+    {
+      "candidate_cost": {
+        "cost": 25121,
+        "error": null,
+        "memory": 24260,
+        "ok": true,
+        "parameters": 861
+      },
+      "correctness_risk": "low",
+      "current_cost": {
+        "cost": 36814,
+        "error": null,
+        "memory": 36150,
+        "ok": true,
+        "parameters": 664
+      },
+      "estimated_hours": 1.0,
+      "expected_gain": 0.3821740578856888,
+      "full_check": {
+        "error": null,
+        "ok": true
+      },
+      "implementation_difficulty": "low",
+      "kind": "bitclosure_hvh",
+      "passed_all_gates": true,
+      "path": "/mnt/data/ng7190/artifacts/task187_bitclosure.onnx",
+      "priority": 0.37835231730683194,
+      "sanitize_ort": {
+        "error": null,
+        "ok": true,
+        "sanitized_bytes": 17190
+      },
+      "success_probability": 0.99,
+      "task": 187,
+      "validation": {
+        "candidate_correct": true,
+        "checked": 266,
+        "error": null,
+        "ok": true,
+        "raw_equivalent": true,
+        "skipped": 0
+      }
+    }
+  ],
+  "min_gain": 0.0,
+  "passed": 1,
+  "tested": 1
+}

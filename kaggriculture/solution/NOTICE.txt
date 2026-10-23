@@ -1,0 +1,18 @@
+Kaggriculture Foundation v0, 2026-09-30
+
+The agent policy, investment search, worker scheduler, and experiment tools are
+new implementations. No public competitor agent or past route library is used
+inside the runtime agent. Past agents are read only by the evaluation harness
+as explicitly identified opponents.
+
+Game constants and the behavior implemented in farm_model/rules.py,
+farm_model/market.py, and farm_model/physics.py derive from Kaggle's official
+kaggriculture environment in kaggle-environments 1.32.7.
+
+Copyright 2020 Kaggle Inc. Licensed under the Apache License, Version 2.0.
+https://github.com/Kaggle/kaggle-environments
+https://www.apache.org/licenses/LICENSE-2.0
+
+The original source headers and official environment SHA hashes are preserved
+in the build provenance. This foundation does not claim that GitHub master,
+the pinned local environment, and Kaggle's production runtime are identical.

@@ -1,0 +1,25 @@
+{
+  "task": "task029",
+  "status": "ABORT",
+  "new_cost": 25840,
+  "old_cost": 5525,
+  "gain": -1.5426404315105846,
+  "gates": {
+    "onnx_checker_full_check": true,
+    "official_sanitizer": true,
+    "ort_load_and_run": true,
+    "train_test_arcgen_expected_correct": "266/266",
+    "raw_equivalence_vs_baseline": "266/266",
+    "official_cost_measured": true,
+    "check_overfit": "OK (not flagged)",
+    "audit_onnx_bundle": "not applicable (single-task experiment, not a bundle merge)"
+  },
+  "sha_unchanged": true,
+  "root_submission_sha256": "1b509ed4c55c1391d63a7166a78129635292ef5c015de835714ee89dbdb4e4ca",
+  "risks": [
+    "OneHot in ONNX Runtime only implements INT64 indices, forcing a costly INT64 cast for the final one-hot re-expansion.",
+    "Any intermediate touching the full 10-channel 30x30 tensor is charged in full by the official memory formula; only the terminal node's output (named 'output') is exempt.",
+    "GridSample already exploits that single exemption near-optimally; a Gather/Slice/OneHot-based tail could not be found under 3,956 (measured 25,840, worse than baseline's 5,525)."
+  ],
+  "recommendation_to_fable5": "Reject this candidate direction for task029; measured cost (25,840) is far above both the 3,956 acceptance ceiling and the 4,600 build-time abort threshold, and worse than the current baseline (5,525). Correctness (266/266 train+test+arc-gen, and 266/266 raw-output equivalence with the baseline) was fully achieved, so the algorithm itself is not the problem -- the official per-tensor memory charging model makes any Gather/OneHot-based crop of the full one-hot tensor structurally more expensive than the existing GridSample approach for this task. Suggest de-prioritizing further C-8/C-11 work on task029 unless a construction is found that keeps the terminal node's output as the ONLY large 10-channel tensor in the graph (as GridSample already does)."
+}

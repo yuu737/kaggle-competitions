@@ -1,0 +1,52 @@
+{
+  "base": "<project>\\submission.zip",
+  "candidates": [
+    {
+      "candidate_cost": {
+        "cost": 16233,
+        "error": null,
+        "memory": 16066,
+        "ok": true,
+        "parameters": 167
+      },
+      "correctness_risk": "low",
+      "current_cost": {
+        "cost": 27956,
+        "error": null,
+        "memory": 27757,
+        "ok": true,
+        "parameters": 199
+      },
+      "estimated_hours": 0.5,
+      "expected_gain": 0.5435856382861747,
+      "full_check": {
+        "error": null,
+        "ok": true
+      },
+      "implementation_difficulty": "low",
+      "kind": "gather_index_composition",
+      "passed_all_gates": true,
+      "path": "FABLE5_WORK/C5v2_task209/task209_v2.onnx",
+      "priority": 1.076299563806626,
+      "sanitize_ort": {
+        "error": null,
+        "ok": true,
+        "sanitized_bytes": 15980
+      },
+      "success_probability": 0.99,
+      "task": 209,
+      "validation": {
+        "candidate_correct": true,
+        "checked": 266,
+        "error": null,
+        "official_equivalent": true,
+        "ok": true,
+        "raw_equivalent": true,
+        "skipped": 0
+      }
+    }
+  ],
+  "min_gain": 0.0,
+  "passed": 1,
+  "tested": 1
+}

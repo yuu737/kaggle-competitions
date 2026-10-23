@@ -1,0 +1,54 @@
+{
+  "task": "task029",
+  "root_submission_sha256_before": "1b509ed4c55c1391d63a7166a78129635292ef5c015de835714ee89dbdb4e4ca",
+  "root_submission_sha256_after": "1b509ed4c55c1391d63a7166a78129635292ef5c015de835714ee89dbdb4e4ca",
+  "root_submission_unchanged": true,
+  "baseline_model": "FABLE5_WORK/baseline_models/task029.onnx",
+  "baseline_model_sha256": "58f39359dc76b03911de0feb980a483c548fcdd82c0f84a7eb8395d962396697",
+  "candidate_model": "FABLE5_WORK/C11_task029/task029_candidate.onnx",
+  "candidate_model_sha256": "bdddeda31785b5d786b0c126e77b1d7776c4214997d612c4bd91cdb58af95a77",
+  "gates": {
+    "onnx_checker_full_check": {"ok": true},
+    "official_sanitizer_and_ort_load": {"ok": true},
+    "train_test_arcgen_expected_output": {
+      "ok": true,
+      "checked": 266,
+      "correct": 266,
+      "wrong": 0,
+      "skipped": 0
+    },
+    "raw_output_equivalence_vs_baseline": {
+      "ok": true,
+      "checked": 266,
+      "equal": 266,
+      "differ": 0,
+      "note": "diagnostic per packet, exceeded (full equivalence achieved)"
+    },
+    "official_cost_measurement": {
+      "ok": true,
+      "baseline_memory": 5436,
+      "baseline_parameters": 89,
+      "baseline_cost": 5525,
+      "candidate_memory": 25776,
+      "candidate_parameters": 64,
+      "candidate_cost": 25840,
+      "gain": -1.5426404315105846
+    },
+    "check_overfit": {
+      "ok": true,
+      "flagged": false,
+      "note": "no Gather/GatherND with a large (>=512 elem) initializer table; ran against a single-task zip bundle containing only task029_candidate.onnx"
+    },
+    "audit_onnx_bundle": {
+      "ok": null,
+      "note": "not applicable: this is a single-task experimental candidate, not a bundle merge; not run per packet scope (bundle candidates only)"
+    }
+  },
+  "acceptance": {
+    "target_new_cost_max": 3956,
+    "abort_threshold_build_estimate": 4600,
+    "measured_new_cost": 25840,
+    "result": "ABORT",
+    "reason": "Gather/OneHot-based crop tail measured far above both the abort threshold and the baseline cost itself; negative gain."
+  }
+}
