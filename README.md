@@ -21,6 +21,20 @@ Kaggleの大会に取り組んだ記録です。2026年6月に始め、約2か�
 
 順位はKaggleの表示（2026-10-23時点）。RSNAは非公開順位の発表前です。
 
+## 公開ノートブック（NeuroGolf、銀1・銅4）
+
+NeuroGolfの研究で分かったことを、5本のノートブックとして公開しました。どれも同じ検証済みの提出ファイル（公開最高スコアに、検証した1タスクの改良を加えたもの）を出力し、研究の別々の側面を解説しています。
+
+| ノートブック | 内容 | 票 |
+| --- | --- | ---: |
+| [Anatomy of a 45-Point Climb](https://www.kaggle.com/code/yuu111111111/neurogolf-7225-19-anatomy-of-a-45-point-climb) | 約45点の伸びを、汎用の整理・公開解の統合・タスク別の再設計に分解した記録 | 69 |
+| [7 Findings From the Full Research Run](https://www.kaggle.com/code/yuu111111111/neurogolf-7-findings-from-the-full-research-run) | 研究全体から得た7つの定量的な知見 | 56 |
+| [6 Failure Modes That Saved the Most Time](https://www.kaggle.com/code/yuu111111111/neurogolf-6-failure-modes-that-saved-the-time) | 時間を一番節約した6つの失敗パターン | 43 |
+| [Graph Polish Is Over. Redesign the Algorithm](https://www.kaggle.com/code/yuu111111111/neurogolf-graph-polish-is-over-redesign-the-alg) | Claude（Fable5）を研究リードにした実験から、細かい調整より再設計が効くと分かった話 | 25 |
+| [The Experiments That Failed—and Why](https://www.kaggle.com/code/yuu111111111/neurogolf-the-experiments-that-failed-and-why) | 効かなかった最適化と、その理由の報告 | 20 |
+
+票数は2026-10-26時点。
+
 ## Claude Codeで研究チームを組む
 
 NeuroGolf・ROGII・RSNAでは、Claude Codeを「研究リード」にして、実装と検証を下のエージェントに任せる体制を組みました。詳しくは [CLAUDE_CODE.md](CLAUDE_CODE.md)。
