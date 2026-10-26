@@ -2,7 +2,7 @@
 
 > Solutions and agent workflows from my Kaggle competitions (Competitions Expert / Notebooks Expert, started June 2026, 3 bronze medals). In NeuroGolf, ROGII and RSNA I ran Claude Code as a research lead that delegated implementation to Sonnet subagents and external CLI workers, with project skills and fixed validation gates. I set the direction, the acceptance rules and the final calls.
 
-Kaggleの大会に取り組んだ記録です。2026年6月に始め、5か月で **Competitions Expert / Notebooks Expert** になりました。
+Kaggleの大会に取り組んだ記録です。2026年6月に始め、約2か月で **Competitions Expert** になりました（現在は **Notebooks Expert** も）。
 
 - Kaggle: [yuu111111111](https://www.kaggle.com/yuu111111111)
 - Competitions: 銅メダル3（3,204位 / 221,861人）
