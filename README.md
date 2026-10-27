@@ -5,8 +5,8 @@
 Kaggleの大会に取り組んだ記録です。2026年6月に始め、約2か月で **Competitions Expert** になりました（現在は **Notebooks Expert** も）。
 
 - Kaggle: [yuu111111111](https://www.kaggle.com/yuu111111111)
-- Competitions: 銅メダル3（3,204位 / 221,861人）
-- Notebooks: 銀メダル1・銅メダル4（1,264位 / 59,492人）
+- Competitions: 銅メダル3（3,204位 / 221,834人）
+- Notebooks: 銀メダル1・銅メダル4（1,261位 / 59,178人）
 
 ## 成績
 
@@ -15,11 +15,11 @@ Kaggleの大会に取り組んだ記録です。2026年6月に始め、約2か�
 | [ROGII Wellbore Geology Prediction](rogii-wellbore/) | 時系列・地質の逆推定 | 437 / 6,125 | 7.1% | 🥉 銅 |
 | [NeuroGolf 2026](neurogolf-2026/) | 最小のニューラルネット設計（ONNX） | 275 / 2,963 | 9.3% | 🥉 銅 |
 | [Kaggriculture](kaggriculture/) | 対戦型エージェント | 991 / 10,148 | 9.8% | 🥉 銅 |
-| [RSNA Knee Abnormality Detection](rsna-knee/) | 医用画像（膝MRI） | 426 / 6,425 | 6.6% | 最終結果待ち |
+| [RSNA Knee Abnormality Detection](rsna-knee/) | 医用画像（膝MRI） | 402 / 6,300 | 6.4% | メダル確定待ち |
 | Pokémon TCG AI Battle | 対戦型エージェント | 802 / 6,807 | 11.8% | （メダル対象外） |
 | [Orbit Wars](orbit-wars/) | 対戦型エージェント | 748 / 4,730 | 15.8% | — |
 
-順位はKaggleの表示（2026-10-23時点）。RSNAは非公開順位の発表前です。
+順位はKaggleの表示（2026-10-27時点）。RSNAはメダルの確定待ちです。
 
 ## 公開ノートブック（NeuroGolf、銀1・銅4）
 
