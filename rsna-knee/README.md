@@ -1,4 +1,4 @@
-# RSNA Knee Abnormality Detection — 402 / 6,300（上位6.4%、メダル確定待ち）
+# RSNA Knee Abnormality Detection — 402 / 6,299（上位6.4%、銅メダル）
 
 [大会ページ](https://www.kaggle.com/competitions/rsna-knee-abnormality-detection)
 

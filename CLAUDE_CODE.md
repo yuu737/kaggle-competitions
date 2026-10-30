@@ -8,7 +8,7 @@ Kaggleの3大会（NeuroGolf、ROGII、RSNA）で、Claude Codeをどう使っ�
 | --- | --- | --- |
 | NeuroGolf 2026 | 2026-06-28 〜 07-16 | 🥉 275 / 2,963 |
 | ROGII Wellbore | 2026-06-27 〜 07-23 | 🥉 437 / 6,125 |
-| RSNA Knee | 2026-10-12 〜 10-22 | 402 / 6,300（メダル確定待ち） |
+| RSNA Knee | 2026-10-12 〜 10-22 | 🥉 402 / 6,299 |
 
 ## 1. 研究リードとworkerを分ける（NeuroGolf）
 
